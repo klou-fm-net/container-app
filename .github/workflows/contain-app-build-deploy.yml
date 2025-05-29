@@ -6,7 +6,7 @@ on:
 env:
   AWS_REGION: us-west-2
   ECR_REPO: kevin-container-app
-  CLUSTER_NAME: my-cluster
+  CLUSTER_NAME: MyEksCluster83497DF9-74173a334f3b4045bc1b1e9d0e426b29
 
 jobs:
   deploy:
@@ -33,12 +33,12 @@ jobs:
         docker build -t $IMAGE_URI .
         docker push $IMAGE_URI
 
-    # - name: Update kubeconfig
-    #   run: aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
+    - name: Update kubeconfig
+      run: aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
 
-    # - name: Deploy to EKS
-    #   run: |
-    #     IMAGE_URI="600627331586.dkr.ecr.us-east-2.amazonaws.com/kevin-container-app:latest"
-    #     sed -i "s|image:.*|image: $IMAGE_URI|g" deployment.yaml
-    #     kubectl apply -f deployment.yaml
-    #     kubectl apply -f service.yaml
+    - name: Deploy to EKS
+      run: |
+        IMAGE_URI="600627331586.dkr.ecr.us-east-2.amazonaws.com/kevin-container-app:latest"
+        sed -i "s|image:.*|image: $IMAGE_URI|g" deployment.yaml
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
