@@ -3,7 +3,6 @@ name: Container Build and Deployment
 on:
   push:
     branches: [ main ]
-
 env:
   AWS_REGION: us-west-2
   ECR_REPO: kevin-container-app
