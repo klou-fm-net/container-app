@@ -27,11 +27,11 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to ECR
-      run: |
-        IMAGE_URI="600627331586.dkr.ecr.us-east-2.amazonaws.com/kevin-container-app:latest"
-        docker build -t $IMAGE_URI .
-        docker push $IMAGE_URI
+    # - name: Build, tag, and push image to ECR
+    #   run: |
+    #     IMAGE_URI="600627331586.dkr.ecr.us-east-2.amazonaws.com/kevin-container-app:latest"
+    #     docker build -t $IMAGE_URI .
+    #     docker push $IMAGE_URI
 
     - name: Update kubeconfig
       run: aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
