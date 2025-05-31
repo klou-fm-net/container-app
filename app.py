@@ -19,7 +19,7 @@ reviews = [
 @app.route('/review', methods=['POST'])
 def generate_review():
     data = request.get_json()
-    name = data.get('name', 'User')
+    name = data.get('name', 'name')
     comment = random.choice(reviews).format(name)
     return jsonify({"review": comment})
 

@@ -6,7 +6,7 @@ on:
 env:
   AWS_REGION: us-east-2
   ECR_REPO: kevin-container-app
-  CLUSTER_NAME: MyEksCluster83497DF9-74173a334f3b4045bc1b1e9d0e426b29
+  CLUSTER_NAME: MyEksCluster83497DF9-d7bccadcdc68439d8195c05e8d3d0cc1
 
 jobs:
   deploy:
@@ -27,11 +27,11 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    # - name: Build, tag, and push image to ECR
-    #   run: |
-    #     IMAGE_URI="600627331586.dkr.ecr.us-east-2.amazonaws.com/kevin-container-app:latest"
-    #     docker build -t $IMAGE_URI .
-    #     docker push $IMAGE_URI
+    - name: Build, tag, and push image to ECR
+      run: |
+        IMAGE_URI="600627331586.dkr.ecr.us-east-2.amazonaws.com/kevin-container-app:latest"
+        docker build -t $IMAGE_URI .
+        docker push $IMAGE_URI
 
     - name: IAM entity
       run: aws sts get-caller-identity
